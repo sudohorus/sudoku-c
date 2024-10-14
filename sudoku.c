@@ -160,7 +160,12 @@ int eh_valido(const char quadro[9][9], int x, int y, int valor) {
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 int eh_valido_na_coluna(const char quadro[9][9], int y, int valor) {
-	// TODO
+    for (int = 0; i < 9; i++){ //percorre todas as linhas da coluna
+        if (quadro[i][y] == valor){ //verifica se o valor ja existe na coluna
+            return FALSO; //retorna 0(FALSO), caso o valor ja exista na coluna
+        }
+    }
+    return VERDADEIRO; //retorna 1(VERDADEIRO), se o valor é valido na coluna
 }
 
 /* -----------------------------------------------------------------------------

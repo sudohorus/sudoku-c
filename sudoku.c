@@ -160,7 +160,7 @@ int eh_valido(const char quadro[9][9], int x, int y, int valor) {
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 int eh_valido_na_coluna(const char quadro[9][9], int y, int valor) {
-    for (int = 0; i < 9; i++){ //percorre todas as linhas da coluna
+    for (int i = 0; i < 9; i++){ //percorre todas as linhas da coluna
         if (quadro[i][y] == valor){ //verifica se o valor ja existe na coluna
             return FALSO; //retorna 0(FALSO), caso o valor ja exista na coluna
         }
@@ -174,7 +174,12 @@ int eh_valido_na_coluna(const char quadro[9][9], int y, int valor) {
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 int eh_valido_na_linha(const char quadro[9][9], int x, int valor) {
-	// TODO
+	for (int i = 0; i < 9; i++){ //percorre todas as colunas da linha
+        if (quadro[x][i] == valor){ //verifica se o valor ja existe na linha
+            return FALSO; //retorna FALSO, caso o valor ja exista na linha
+        }
+    }
+    return VERDADEIRO; //retorna VERDADEIRO, se o valor é valido na linha
 }
 
 /* -----------------------------------------------------------------------------
@@ -183,6 +188,7 @@ int eh_valido_na_linha(const char quadro[9][9], int x, int valor) {
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 int eh_valido_no_quadrante3x3(const char quadro[9][9], int x, int y, int valor) {
+<<<<<<< HEAD
     for (int i = ini_x(x); i = fim_x(x); i++){
         for (int j = ini_y; j = fim_y; j++){
             if (i != x && j != y){
@@ -193,6 +199,18 @@ int eh_valido_no_quadrante3x3(const char quadro[9][9], int x, int y, int valor) 
         }
     }
     return VERDADEIRO;
+=======
+	for (int i = ini_x(x); i = fim_x(x); i++) {
+		for (int j = ini_y; j = fim_y; j++) {
+			if (i != x && j != y) {
+				if (quadro[i][j] == valor){
+					return FALSO;
+				}
+			}
+		}
+	}
+	return VERDADEIRO;
+>>>>>>> 0a24e520659ae1537d5bff00746ec1598d615fba
 }
 
 /* -----------------------------------------------------------------------------

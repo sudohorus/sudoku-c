@@ -183,7 +183,16 @@ int eh_valido_na_linha(const char quadro[9][9], int x, int valor) {
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 int eh_valido_no_quadrante3x3(const char quadro[9][9], int x, int y, int valor) {
-	// TODO
+    for (int i = ini_x(x); i = fim_x(x); i++){
+        for (int j = ini_y; j = fim_y; j++){
+            if (i != x && j != y){
+                if (quadro[i][j] == valor){
+                    return FALSO;
+                }
+            }
+        }
+    }
+    return VERDADEIRO;
 }
 
 /* -----------------------------------------------------------------------------
@@ -332,7 +341,24 @@ void resolve_completo(FILE *fb, char quadro[9][9]) {
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 void resolve_um_passo(char quadro[9][9]) {
-	// TODO
+    //percorre todas as linhas da matriz
+    for (int i = 0; i < 9; i++){
+        //percorre todas as colunas da matriz
+        for (int j = 0; j < 9; j++){
+            //verifica se o espaço ta vazio
+            if (quadro[i][j] == 0){ //campo vazio
+                //tenta inserir um valor de 1 a 9 no espaço
+                for (int valor = 1; valor <= 9; valor++){
+                    //verifica se o valor é valido na posição
+                    if (eh_valido(quadro, i, j, valor)){
+                        //se o valor for valido, insere no quadro
+                        quadro[i][j] = valor; //preenche campo
+                        return;
+                    }
+                }
+            }
+        }
+    }
 }
 
 /* -----------------------------------------------------------------------------

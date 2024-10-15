@@ -372,7 +372,9 @@ void resolve_um_passo(char quadro[9][9]) {
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 void salve_jogada_bin (FILE *fb, char quadro[9][9]) {
-	// TODO
+	if(fb == NULL) return; //se o arquivo nao estiver aberto, nao faz nada
+    
+    fwrite(quadro, sizeof(char), 81, fb); //salva 81 elementos (9x9) no arquivo
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

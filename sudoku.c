@@ -188,7 +188,6 @@ int eh_valido_na_linha(const char quadro[9][9], int x, int valor) {
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 int eh_valido_no_quadrante3x3(const char quadro[9][9], int x, int y, int valor) {
-<<<<<<< HEAD
     for (int i = ini_x(x); i = fim_x(x); i++){
         for (int j = ini_y; j = fim_y; j++){
             if (i != x && j != y){
@@ -199,18 +198,6 @@ int eh_valido_no_quadrante3x3(const char quadro[9][9], int x, int y, int valor) 
         }
     }
     return VERDADEIRO;
-=======
-	for (int i = ini_x(x); i = fim_x(x); i++) {
-		for (int j = ini_y; j = fim_y; j++) {
-			if (i != x && j != y) {
-				if (quadro[i][j] == valor){
-					return FALSO;
-				}
-			}
-		}
-	}
-	return VERDADEIRO;
->>>>>>> 0a24e520659ae1537d5bff00746ec1598d615fba
 }
 
 /* -----------------------------------------------------------------------------

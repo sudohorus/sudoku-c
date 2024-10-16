@@ -108,23 +108,25 @@ void carregue_novo_jogo(char quadro[9][9], char *nome_arquivo) {
  */
 FILE* crie_arquivo_binario(char quadro[9][9]) {
     FILE *fb;
-    char nome_arquivo[20];
+    char nome_arquivo[15];
+
+    //inicia o gerador de números aleatorio
+    srand(time(NULL))
 
     //gera um nome de arquivo aleatorio para o arquivo binario
     gen_random(nome_arquivo, 10); //funcao auxiliar pra gerar nome aleatorioi
     
-    //adiciona extensao .bin
-    nome_arquivo[10] = '.';
-    nome_arquivo[11] = 'b';
-    nome_arquivo[12] = 'i';
-    nome_arquivo[13] = 'n';
-    nome_arquivo[14] = '\0';
+    //adiciona o .bin
+    for (int = 10; i < 14; i++){
+        nome_arquivo[i] = ".bin"[i - 10]; //copia .bin pro final do nome
+    }
+    nome_arquivo[14] = '\0' //garante que a string termina corretamente
 
     //abre pra escrever
-    fb = fopen(nome_arquivo, "wb")
+    fb = fopen(nome_arquivo, "wb");
 
     //verifica se foi aberto corretamente
-    if (fb == NULL) {
+    if (fb == NULL) {i
         printf(ERROR_FILE_MSG);
         return NULL; //retorna NULL se houve erro
     }

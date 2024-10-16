@@ -52,7 +52,7 @@ int main() {
 	return 0;
 }
 
-* -----------------------------------------------------------------------------
+/* -----------------------------------------------------------------------------
  * CARREGAR
  * Inicializa o SUDOKU a partir de um novo jogo ou estado de jogo anterior
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -98,7 +98,20 @@ FILE* carregue_continue_jogo (char quadro[9][9], char *nome_arquivo) {
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 void carregue_novo_jogo(char quadro[9][9], char *nome_arquivo) {
-	// TODO
+	FILE *f;
+
+	f = fopen(nome_arquivo, "r");
+
+	for (i = 0; i < 9; i++) {
+		for (j = 0; j < 9; j++) {
+			if (fscanf(f, "%c", &quadro[i][j]) != 1) {
+            	printf("%s", ERROR_FILE_MSG);
+                fclose(f);
+                return FALSO;
+		}
+	}
+
+	crie_arquivo_binario(quadro);
 }
 
 /* -----------------------------------------------------------------------------

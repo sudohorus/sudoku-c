@@ -98,7 +98,26 @@ FILE* carregue_continue_jogo (char quadro[9][9], char *nome_arquivo) {
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 void carregue_novo_jogo(char quadro[9][9], char *nome_arquivo) {
-	// TODO
+    FILE *f;
+    int i, j;
+
+    f = fopen(nove_arquivo, "r");
+    if (f == NULL){
+        printf("%s", ERROR_FILE_MSG);
+        return;
+    }
+
+    for (i = 0; i < 9; i++) {
+		for (j = 0; j < 9; j++) {
+			if (fscanf(f, " %c", &quadro[i][j]) != 1) {
+                printf("%s", ERROR_FILE_MSG);
+				fclose(f);
+				return;
+			}
+		}
+	}
+	fclose(f);
+	crie_arquivo_binario(quadro);
 }
 
 /* -----------------------------------------------------------------------------
@@ -107,38 +126,35 @@ void carregue_novo_jogo(char quadro[9][9], char *nome_arquivo) {
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 FILE* crie_arquivo_binario(char quadro[9][9]) {
-    FILE *fb;
+FILE *fb;
     char nome_arquivo[15];
 
-    //inicia o gerador de números aleatorio
-    srand(time(NULL))
+    srand(time(NULL));
 
-    //gera um nome de arquivo aleatorio para o arquivo binario
-    gen_random(nome_arquivo, 10); //funcao auxiliar pra gerar nome aleatorioi
-    
+    //gera um nome de arquivo aleatório
+    gen_random(nome_arquivo, 10);
     //adiciona o .bin
-    for (int = 10; i < 14; i++){
-        nome_arquivo[i] = ".bin"[i - 10]; //copia .bin pro final do nome
+    for (int i = 10; i < 14; i++) {
+        nome_arquivo[i] = ".bin"[i - 10];
     }
-    nome_arquivo[14] = '\0' //garante que a string termina corretamente
+    nome_arquivo[14] = '\0';
 
-    //abre pra escrever
+    // Abre para escrever
     fb = fopen(nome_arquivo, "wb");
-
-    //verifica se foi aberto corretamente
-    if (fb == NULL) {i
-        printf(ERROR_FILE_MSG);
+    if (fb == NULL) {
+        printf("%s", ERROR_FILE_MSG);
         return NULL; //retorna NULL se houve erro
     }
 
-    //chama função pra salvar a grade no arquivo
+    //chama função para salvar a grade no arquivo
     salve_jogada_bin(fb, quadro); //salva a grade de sudoku no arquivo
                                 
     //fecha o arquivo depois de escrever
     fclose(fb);
 
-    printf("arquivo binário criado: %s\n", nome_arquivo);
+    printf("Arquivo binário criado: %s\n", nome_arquivo);
     return NULL; //retorna NULL, pois o arquivo foi fechado
+}
 }
 
 /* -----------------------------------------------------------------------------

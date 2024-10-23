@@ -89,7 +89,22 @@ FILE* carregue(char quadro[9][9]) {
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 FILE* carregue_continue_jogo (char quadro[9][9], char *nome_arquivo) {
-	// TODO
+	FILE *f = fopen(nome_arquivo, "rb");
+    if(F == NULL){
+        printf("%s", ERROR_FILE_MSG);
+        return NULL;
+    }
+
+    //carrega os dados do arquivo binário no quadro
+    if(fread(quadro, sizeof(char), 9 * 9. f) != 9 * 9){
+        printf("%s", ERROR_FILE_MSG);
+        fclose(f);
+        return NULL;
+    }
+
+    fclose(f);
+    printf("Jogo carregado com sucesso a partir de %s\n", nome_arquivo);
+    return f;
 }
 
 /* -----------------------------------------------------------------------------

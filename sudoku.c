@@ -90,6 +90,8 @@ FILE* carregue(char quadro[9][9]) {
 			puts(INVALID_OPTION);
 			break;
 	}
+
+	return NULL;
 }
 
 /* -----------------------------------------------------------------------------

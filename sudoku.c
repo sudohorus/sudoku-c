@@ -65,22 +65,31 @@ FILE* carregue(char quadro[9][9]) {
 
 	// TODO Função incompleta
 
+	char nome_arquivo[50];
+
 	switch(opcao) {
 
 		// carregar novo sudoku
 		case 1:
+			printf("Informe o nome do arquivo .txt do novo jogo: ");
+			scanf("%s", nome_arquivo);
+			carregue_novo_jogo(quadro, nome_arquivo);
 			break;
 
 		// continuar jogo
 		case 2:
-			break;
+			printf("Informe o nome do arquivo para continuar o jogo: ");
+			scanf("%s", nome_arquivo);
+			return carregue_continue_jogo(quadro, nome_arquivo);
 
 		// retornar ao menu anterior
 		case 9:
-			break;
+			return NULL;
 
 		default:
+			puts(INVALID_OPTION);
 			break;
+	}
 }
 
 /* -----------------------------------------------------------------------------
@@ -90,13 +99,13 @@ FILE* carregue(char quadro[9][9]) {
  */
 FILE* carregue_continue_jogo (char quadro[9][9], char *nome_arquivo) {
 	FILE *f = fopen(nome_arquivo, "rb");
-    if(F == NULL){
+    if(f == NULL){
         printf("%s", ERROR_FILE_MSG);
         return NULL;
     }
 
     //carrega os dados do arquivo binário no quadro
-    if(fread(quadro, sizeof(char), 9 * 9. f) != 9 * 9){
+    if(fread(quadro, sizeof(char), 9 * 9, f) != 9 * 9){
         printf("%s", ERROR_FILE_MSG);
         fclose(f);
         return NULL;
@@ -166,7 +175,6 @@ FILE *fb;
 
     printf("Arquivo binário criado: %s\n", nome_arquivo);
     return NULL; //retorna NULL, pois o arquivo foi fechado
-}
 }
 
 /* -----------------------------------------------------------------------------

@@ -132,7 +132,7 @@ void carregue_novo_jogo(char quadro[9][9], char *nome_arquivo) {
 
     for (int i = 0; i < 9; i++) {
         for (int j = 0; j < 9; j++) {
-            if (fscanf(f, "%d", &quadro[i][j]) != 1) {
+            if (fscanf(f, "%s", &quadro[i][j]) != 1) {
                 printf("%s", ERROR_FILE_MSG);
                 fclose(f);
                 return;
@@ -257,8 +257,8 @@ int eh_valido_na_linha(const char quadro[9][9], int x, int valor) {
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 int eh_valido_no_quadrante3x3(const char quadro[9][9], int x, int y, int valor) {
-    for (int i = ini_x(x); i = fim_x(x); i++){
-        for (int j = ini_y(y); j = fim_y(y); j++){
+    for (int i = ini_x(x); i <= fim_x(x); i++){
+        for (int j = ini_y(y); j <= fim_y(y); j++){
             if (i != x && j != y){
                 if (quadro[i][j] == valor){
                     return FALSO;
@@ -310,7 +310,7 @@ void imprima(const char quadro[9][9]) {
 			if (quadro[i][j] == 0)
 				printf("- ");
 			else
-				printf("%d ", quadro[i][j]);
+				printf("%d ", quadro[i][j] - 48);
 		}
 		puts("|");
 	}

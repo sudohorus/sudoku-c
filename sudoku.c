@@ -258,7 +258,7 @@ int eh_valido_na_linha(const char quadro[9][9], int x, int valor) {
  */
 int eh_valido_no_quadrante3x3(const char quadro[9][9], int x, int y, int valor) {
     for (int i = ini_x(x); i = fim_x(x); i++){
-        for (int j = ini_y; j = fim_y; j++){
+        for (int j = ini_y(y); j = fim_y(y); j++){
             if (i != x && j != y){
                 if (quadro[i][j] == valor){
                     return FALSO;
